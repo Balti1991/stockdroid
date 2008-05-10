@@ -3,13 +3,13 @@
  */
 package org.kofeina.stockdroid.datafetch;
 
+import java.util.Date;
+
 /**
  * @author halish
  *
  */
 public class YahooFetcher extends DataFetcher {
-
-	private YahooFetcher() {}
 
 	/* (non-Javadoc)
 	 * @see org.kofeina.stockdroid.datafetch.DataFetcher#fetch()

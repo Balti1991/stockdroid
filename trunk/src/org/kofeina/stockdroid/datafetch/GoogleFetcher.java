@@ -1,8 +1,8 @@
 package org.kofeina.stockdroid.datafetch;
 
-public class GoogleFetcher extends DataFetcher {
+import java.util.Date;
 
-	private GoogleFetcher() {}
+public class GoogleFetcher extends DataFetcher {
 		
 	@Override
 	public void fetch() {
