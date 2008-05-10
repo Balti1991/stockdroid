@@ -2,21 +2,42 @@
  * 
  */
 package org.kofeina.stockdroid.datafetch;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * @author halish
  *
  */
 abstract class DataFetcher {
-	private HashMap<Date,Double> data;
-	private String ticking;
+	private HashMap<Date,StockQuotation> data;
+	public HashMap<Date,StockQuotation> getDailyQuotations() { return this.data; } 
 
-	public DataFetcher() {}
+	private Date startDate;
+	public Date getStartDate() { return this.startDate; }
+
+	private Date endDate;
+	public Date getEndDate() { return this.endDate; }
+	
+	private String ticking;
+	/**
+	 * @return the ticking
+	 */
+	public String getTicking() {
+		return ticking;
+	}
+
+	protected DataFetcher() { super(); }
 	
 	public DataFetcher(String ticking, Date startDate, Date endDate) {
 		this.ticking = ticking;
+		this.fetch(startDate, endDate);
+	}	
+	
+	public abstract void fetch();
+	public void fetch(Date startDate, Date endDate) {
 		if (startDate.before(endDate)) {
 			this.startDate = startDate;
 			this.endDate = endDate;
@@ -27,33 +48,10 @@ abstract class DataFetcher {
 		this.fetch();
 	}
 	
-	/*
-	 * 
-	 */
-	private Date startDate;
-	public Date getStartDate() { return this.startDate; }
-	public void setStartDate(Date startDate) {
-		if (startDate.after(this.endDate)) {
-			throw new IllegalArgumentException("startDate must be earlier then endDate!");
-		}
-		else {
-			this.startDate = startDate;
-		}
-	}
-	
-	/*
-	 * 
-	 */
-	private Date endDate;
-	public Date getEndDate() { return this.endDate; }
-	public void setEndDate(Date endDate) { 
-		if (endDate.before(this.startDate)) {
-			throw new IllegalArgumentException("endDate must be later than startDate!");
-		}
-		else {
-			this.endDate = endDate;
-		}
-	}
-	
-	public abstract void fetch();
+	ArrayList<Date> generateDatesList() {
+		ArrayList<Date> output = new ArrayList<Date>();
+
+		return output;
+	}		
 }
+
